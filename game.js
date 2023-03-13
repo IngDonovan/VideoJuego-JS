@@ -40,6 +40,9 @@ function startGame() {
     const elementsSize = canvasSize / 10;
 
     console.log ({canvasSize, elementsSize});
-
+    
+    //pero para cuadrar la posicion bien porque cambia con las pantallas usamos:
+    game.font = elementsSize + 'px Verdana';//no solo usar el font size sino la fuente tambien que vamos a usar
     game.fillText(emojis['X'],100,100);//agregamos un emoji con posicion , x,y
+
 }
