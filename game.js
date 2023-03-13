@@ -27,12 +27,17 @@ function startGame() {
     else {
         canvasSize = window.innerHeight * 0.8;
     }
-
+    
     canvas.setAttribute('Width', canvasSize);
     canvas.setAttribute('height', canvasSize);
-
+    
     //para hacer responsive, lo usamos dentro del canvas, pero hace efecto cuando se recarga
     //windows.innerHeight
     //windows.innerWidth
     //no tener en cuenta el conenido del html sino de la ventana
+    
+    //como calcular el ancho y el alto del elemento apartir de ese ancho y alto de nuestro canvas, si tenemos 100px respect necesitamos cada medida de 10px
+    const elementsSize = canvasSize / 10;
+
+    console.log ({canvasSize, elementsSize});
 }
