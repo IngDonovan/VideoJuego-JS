@@ -11,10 +11,18 @@ function startGame() {
     //game.clearRect(50,50,50,50);//borrador
 
     //la ubicacion en nuestro canvas;
-    game.font = '25px Verdana';//el tama;o que va a usar
+    //game.font = '25px Verdana';//el tama;o que va a usar
     //no los llamamos metodos, sino valores, son atributos
-    game.fillStyle = 'white';
-    game.textAlign = 'start';//podemos decirle que en esas cordenadas va a iniciar en o terminar en
+    //game.fillStyle = 'white';
+    //game.textAlign = 'start';//podemos decirle que en esas cordenadas va a iniciar en o terminar en
     //insercion de texto
-    game.fillText('Platzi', 25, 25);
+    //game.fillText('Platzi', 25, 25);
+
+    canvas.setAttribute('Width', window.innerWidth * 0.75);
+    canvas.setAttribute('height', window.innerHeight * 0.5);
+
+    //para hacer responsive, lo usamos dentro del canvas, pero hace efecto cuando se recarga
+    //windows.innerHeight
+    //windows.innerWidth
+    //no tener en cuenta el conenido del html sino de la ventana
 }
