@@ -43,6 +43,13 @@ function startGame() {
     
     //pero para cuadrar la posicion bien porque cambia con las pantallas usamos:
     game.font = elementsSize + 'px Verdana';//no solo usar el font size sino la fuente tambien que vamos a usar
-    game.fillText(emojis['X'],100,100);//agregamos un emoji con posicion , x,y
+    //game.fillText(emojis['X'],100,100);//agregamos un emoji con posicion , x,y
 
+    game.textAlign = 'end';//para que quede la posicion al inicio
+
+    //para tener 10 elememtos vertica y horizontal
+    for (let i = 1; i <= 10; i++) {
+        game.fillText(emojis['X'],elementsSize,elementsSize * i);//el elemento 0 queda por fuera por eso le damos 1 para poder tener los 10 dentro del canvas
+        
+    }
 }
