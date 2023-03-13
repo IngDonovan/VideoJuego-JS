@@ -40,4 +40,6 @@ function startGame() {
     const elementsSize = canvasSize / 10;
 
     console.log ({canvasSize, elementsSize});
+
+    game.fillText(emojis['X'],100,100);//agregamos un emoji con posicion , x,y
 }
