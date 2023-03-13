@@ -18,8 +18,18 @@ function startGame() {
     //insercion de texto
     //game.fillText('Platzi', 25, 25);
 
-    canvas.setAttribute('Width', window.innerWidth * 0.75);
-    canvas.setAttribute('height', window.innerHeight * 0.5);
+    //para el calculo del cuadrado
+    let canvasSize;
+
+    if (window.innerHeight > window.innerWidth) {
+        canvasSize = window.innerWidth * 0.8;
+    }
+    else {
+        canvasSize = window.innerHeight * 0.8;
+    }
+
+    canvas.setAttribute('Width', canvasSize);
+    canvas.setAttribute('height', canvasSize);
 
     //para hacer responsive, lo usamos dentro del canvas, pero hace efecto cuando se recarga
     //windows.innerHeight
