@@ -47,7 +47,6 @@ function startGame() {
     //insercion de texto
     //game.fillText('Platzi', 25, 25);
 
-    setCanvasSize();    
 
     console.log ({canvasSize, elementsSize});
     
