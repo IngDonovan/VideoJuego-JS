@@ -3,6 +3,8 @@ const canvas = document.querySelector('#game');//seleccionar
 const game = canvas.getContext('2d');//juego en 2d
 
 window.addEventListener('load',startGame);//apenas cargue el html, para evitar que nos genere problemas a futuro
+window.addEventListener('resize',startGame);//para tomar el elemento de cambio de pantalla
+
 
 //primero que todo crear una funcion para encapsular el codigo que vamos a llamar
 //para inicializar
@@ -18,6 +20,24 @@ function startGame() {
     //insercion de texto
     //game.fillText('Platzi', 25, 25);
 
+    setCanvasSize();    
+
+    console.log ({canvasSize, elementsSize});
+    
+    //pero para cuadrar la posicion bien porque cambia con las pantallas usamos:
+    game.font = elementsSize + 'px Verdana';//no solo usar el font size sino la fuente tambien que vamos a usar
+    //game.fillText(emojis['X'],100,100);//agregamos un emoji con posicion , x,y
+
+    game.textAlign = 'end';//para que quede la posicion al inicio
+
+    //para tener 10 elememtos vertica y horizontal
+    for (let i = 1; i <= 10; i++) {
+        game.fillText(emojis['X'],elementsSize,elementsSize * i);//el elemento 0 queda por fuera por eso le damos 1 para poder tener los 10 dentro del canvas
+        
+    }
+}
+
+function setCanvasSize() {
     //para el calculo del cuadrado
     let canvasSize;
 
@@ -38,18 +58,4 @@ function startGame() {
     
     //como calcular el ancho y el alto del elemento apartir de ese ancho y alto de nuestro canvas, si tenemos 100px respect necesitamos cada medida de 10px
     const elementsSize = canvasSize / 10;
-
-    console.log ({canvasSize, elementsSize});
-    
-    //pero para cuadrar la posicion bien porque cambia con las pantallas usamos:
-    game.font = elementsSize + 'px Verdana';//no solo usar el font size sino la fuente tambien que vamos a usar
-    //game.fillText(emojis['X'],100,100);//agregamos un emoji con posicion , x,y
-
-    game.textAlign = 'end';//para que quede la posicion al inicio
-
-    //para tener 10 elememtos vertica y horizontal
-    for (let i = 1; i <= 10; i++) {
-        game.fillText(emojis['X'],elementsSize,elementsSize * i);//el elemento 0 queda por fuera por eso le damos 1 para poder tener los 10 dentro del canvas
-        
-    }
 }
