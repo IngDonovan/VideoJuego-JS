@@ -57,8 +57,14 @@ function startGame() {
     game.textAlign = 'end';//para que quede la posicion al inicio
 
     //para tener 10 elememtos vertica y horizontal
-    for (let i = 1; i <= 10; i++) {
-        game.fillText(emojis['X'],elementsSize,elementsSize * i);//el elemento 0 queda por fuera por eso le damos 1 para poder tener los 10 dentro del canvas
+    // for (let i = 1; i <= 10; i++) {
+    //     game.fillText(emojis['X'],elementsSize,elementsSize * i);//el elemento 0 queda por fuera por eso le damos 1 para poder tener los 10 dentro del canvas
+        
+    // }
+    for(let i = 1; i <= 10; i++){
+        for(let j = 1; j <= 10; j++){
+            game.fillText(emojis['X'], elementsSize * i , elementsSize * j);
+        }//para hacerlo bidimensional
         
     }
 }
