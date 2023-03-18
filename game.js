@@ -1,6 +1,10 @@
 const canvas = document.querySelector('#game');//seleccionar
 //para acceder a los metodos de ese elemento
 const game = canvas.getContext('2d');//juego en 2d
+const btnUp = document.querySelector('#up');
+const btnLeft = document.querySelector('#left');
+const btnRight = document.querySelector('#right');
+const btnDown = document.querySelector('#down');
 
 let canvasSize;
 let elementsSize;
@@ -85,15 +89,31 @@ function startGame() {
             const posX = elementsSize * (colI + 1);//para que no se nos salga del canvas
             const posY = elementsSize * (rowI + 1);
             game.fillText(emoji, posX, posY);
-            console.log({row, rowI, col, colI});
+            //console.log({row, rowI, col, colI});
             
         });
     });//array bidimensional es un array de filas y adentro tiene un arreglo de las columnas haciendo un doble forEach
-
-
     // for(let row = 1; row <= 10; row++){
     //     for(let col = 1; col <= 10; col++){
     //         game.fillText(emojis[mapRowCols[row - 1][col - 1]], elementsSize * col , elementsSize * row);
     //     }    
     // }
+}
+//creamos para leer el click de los controles
+btnUp.addEventListener('click',moveUp);
+btnLeft.addEventListener('click',moveLeft);
+btnRight.addEventListener('click',moveRight);
+btnDown.addEventListener('click',moveDown);
+
+function moveUp() {
+    console.log('Me quiero mover hacia arriba');
+}
+function moveLeft() {
+    console.log('Me quiero mover hacia la izquierda');
+}
+function moveRight() {
+    console.log('Me quiero mover hacia la derecha');
+}
+function moveDown() {
+    console.log('Me quiero mover hacia abajo');
 }
