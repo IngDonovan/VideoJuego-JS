@@ -109,18 +109,24 @@ btnDown.addEventListener('click',moveDown);
 
 function moveByKeys(event) {
     //console.log(event);
-    if (event.key == 'ArrowUp') {
-        moveUp();
-    }
-    if (event.key == 'ArrowLeft') {
-        moveLeft();
-    }
-    if (event.key == 'ArrowRight') {
-        moveRight();
-    }
-    if (event.key == 'ArrowDown') {
-        moveDown();
-    }
+    // if (event.key == 'ArrowUp') {
+    //     moveUp();
+    // }
+    // else if (event.key == 'ArrowLeft') {
+    //     moveLeft();
+    // }
+    // else if (event.key == 'ArrowRight') {
+    //     moveRight();
+    // }
+    // else if (event.key == 'ArrowDown') {
+    //     moveDown();
+    // }
+    //el codigo anterior es equivalente a cuando vamos a usar una sola funcion
+    if (event.key == 'ArrowUp') moveUp();
+    else if (event.key == 'ArrowLeft') moveLeft();
+    else if (event.key == 'ArrowRight') moveRight();
+    else if (event.key == 'ArrowDown') moveDown();
+
 }
 
 function moveUp() {
