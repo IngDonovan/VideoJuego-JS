@@ -112,6 +112,12 @@ function startGame() {
     //         game.fillText(emojis[mapRowCols[row - 1][col - 1]], elementsSize * col , elementsSize * row);
     //     }    
     // }
+    // game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
+    //la metemos en una funcion para poder moverla en tiempo real
+    movePlayer();
+}
+
+function movePlayer() {
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
 
@@ -146,6 +152,8 @@ function moveByKeys(event) {
 
 function moveUp() {
     console.log('Me quiero mover hacia arriba');
+    playerPosition.y -= elementsSize;
+    movePlayer();
 }
 function moveLeft() {
     console.log('Me quiero mover hacia la izquierda');
