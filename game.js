@@ -94,8 +94,12 @@ function startGame() {
             const posX = elementsSize * (colI + 1);//para que no se nos salga del canvas
             const posY = elementsSize * (rowI + 1);
             
-            if (col == '0') {
-                console.log('Aqui debe ir el jugador')
+            if (col == 'O') {
+                //console.log('Aqui debe ir el jugador');
+                //console.log({posX, posY});
+                playerPosition.x = posX;
+                playerPosition.y = posY;
+                console.log({playerPosition});
             }
             
             game.fillText(emoji, posX, posY);
@@ -108,6 +112,7 @@ function startGame() {
     //         game.fillText(emojis[mapRowCols[row - 1][col - 1]], elementsSize * col , elementsSize * row);
     //     }    
     // }
+    game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
 
 window.addEventListener('keydown', moveByKeys);//keydown. es cuando presionamos y keyup es cuando levantamos de esa tecla
