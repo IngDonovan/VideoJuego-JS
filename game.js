@@ -73,12 +73,22 @@ function startGame() {
     //para quitarle los demas espacios de las otras filas usamos la funcion trim anidada en la funcion map
     const map = maps[0];
     const mapRows = maps[0].trim().split('\n');
-    const mapRowCols = mapRows.map(row => row.trim().split(''));
+    const mapRowCols = mapRows.map(row => row.trim().split(''));//crea un array apartir de otro array
     console.log ({map, mapRows, mapRowCols});
 
-    for(let row = 1; row <= 10; row++){
-        for(let col = 1; col <= 10; col++){
-            game.fillText(emojis[mapRowCols[row - 1][col - 1]], elementsSize * col , elementsSize * row);
-        }    
-    }
+    //crear un ciclo for con los metodos de los arrays
+    mapRowCols.forEach(row => {
+        row.forEach(col => {
+            console.log(emojis[col]);//esta variable col ya es la letra
+            console.log({row, col});
+            
+        });
+    });//array bidimensional es un array de filas y adentro tiene un arreglo de las columnas haciendo un doble forEach
+
+
+    // for(let row = 1; row <= 10; row++){
+    //     for(let col = 1; col <= 10; col++){
+    //         game.fillText(emojis[mapRowCols[row - 1][col - 1]], elementsSize * col , elementsSize * row);
+    //     }    
+    // }
 }
