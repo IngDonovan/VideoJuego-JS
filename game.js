@@ -77,10 +77,15 @@ function startGame() {
     console.log ({map, mapRows, mapRowCols});
 
     //crear un ciclo for con los metodos de los arrays
-    mapRowCols.forEach(row => {
-        row.forEach(col => {
-            console.log(emojis[col]);//esta variable col ya es la letra
-            console.log({row, col});
+    mapRowCols.forEach((row, rowI) => {//row es un array y col es un caracter
+        row.forEach((col, colI) => {
+            const emoji = emojis[col];
+            //console.log(emojis[col]);//esta variable col ya es la letra
+            //console.log({row, col});
+            const posX = elementsSize * (colI + 1);//para que no se nos salga del canvas
+            const posY = elementsSize * (rowI + 1);
+            game.fillText(emoji, posX, posY);
+            console.log({row, rowI, col, colI});
             
         });
     });//array bidimensional es un array de filas y adentro tiene un arreglo de las columnas haciendo un doble forEach
