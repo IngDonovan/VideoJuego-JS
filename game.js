@@ -9,6 +9,11 @@ const btnDown = document.querySelector('#down');
 let canvasSize;
 let elementsSize;
 
+const playerPosition = {
+    x:undefined,
+    y:undefined, 
+};
+
 window.addEventListener('load',setCanvasSize);//apenas cargue el html, para evitar que nos genere problemas a futuro
 window.addEventListener('resize',setCanvasSize);//para tomar el elemento de cambio de pantalla
 
@@ -88,6 +93,11 @@ function startGame() {
             //console.log({row, col});
             const posX = elementsSize * (colI + 1);//para que no se nos salga del canvas
             const posY = elementsSize * (rowI + 1);
+            
+            if (col == '0') {
+                console.log('Aqui debe ir el jugador')
+            }
+            
             game.fillText(emoji, posX, posY);
             //console.log({row, rowI, col, colI});
             
