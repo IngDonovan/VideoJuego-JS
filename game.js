@@ -85,6 +85,8 @@ function startGame() {
     const mapRowCols = mapRows.map(row => row.trim().split(''));//crea un array apartir de otro array
     console.log ({map, mapRows, mapRowCols});
 
+    //para borrar el emoji anterior
+    game.clearRect(0,0,canvasSize,canvasSize);
     //crear un ciclo for con los metodos de los arrays
     mapRowCols.forEach((row, rowI) => {//row es un array y col es un caracter
         row.forEach((col, colI) => {
@@ -97,9 +99,11 @@ function startGame() {
             if (col == 'O') {
                 //console.log('Aqui debe ir el jugador');
                 //console.log({posX, posY});
-                playerPosition.x = posX;
-                playerPosition.y = posY;
-                console.log({playerPosition});
+                if (!playerPosition.x && !playerPosition.y) {
+                    playerPosition.x = posX;
+                    playerPosition.y = posY;
+                    console.log({playerPosition});
+                }//para que no repita la posicion inicial
             }
             
             game.fillText(emoji, posX, posY);
@@ -153,7 +157,9 @@ function moveByKeys(event) {
 function moveUp() {
     console.log('Me quiero mover hacia arriba');
     playerPosition.y -= elementsSize;
-    movePlayer();
+    //la cambiamos por
+    //movePlayer();
+    startGame();
 }
 function moveLeft() {
     console.log('Me quiero mover hacia la izquierda');
