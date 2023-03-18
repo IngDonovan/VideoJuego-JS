@@ -61,10 +61,24 @@ function startGame() {
     //     game.fillText(emojis['X'],elementsSize,elementsSize * i);//el elemento 0 queda por fuera por eso le damos 1 para poder tener los 10 dentro del canvas
         
     // }
-    for(let i = 1; i <= 10; i++){
-        for(let j = 1; j <= 10; j++){
-            game.fillText(emojis['X'], elementsSize * i , elementsSize * j);
-        }//para hacerlo bidimensional
-        
+    // for(let i = 1; i <= 10; i++){
+    //     for(let j = 1; j <= 10; j++){
+    //         game.fillText(emojis['X'], elementsSize * i , elementsSize * j);
+    //     }//para hacerlo bidimensional    
+    // }
+
+    //para usar el mapa
+    //usamos el split para volverlo todo en arreglos del salto de linea \n
+    //la funcion trim nos ayuda a quitar lo espacios en blanco que tenemos en el arreglo
+    //para quitarle los demas espacios de las otras filas usamos la funcion trim anidada en la funcion map
+    const map = maps[0];
+    const mapRows = maps[0].trim().split('\n');
+    const mapRowCols = mapRows.map(row => row.trim().split(''));
+    console.log ({map, mapRows, mapRowCols});
+
+    for(let row = 1; row <= 10; row++){
+        for(let col = 1; col <= 10; col++){
+            game.fillText(emojis[mapRowCols[row - 1][col - 1]], elementsSize * col , elementsSize * row);
+        }    
     }
 }
