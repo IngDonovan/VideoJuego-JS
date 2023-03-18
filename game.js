@@ -99,11 +99,29 @@ function startGame() {
     //     }    
     // }
 }
+
+window.addEventListener('keydown', moveByKeys);//keydown. es cuando presionamos y keyup es cuando levantamos de esa tecla
 //creamos para leer el click de los controles
 btnUp.addEventListener('click',moveUp);
 btnLeft.addEventListener('click',moveLeft);
 btnRight.addEventListener('click',moveRight);
 btnDown.addEventListener('click',moveDown);
+
+function moveByKeys(event) {
+    //console.log(event);
+    if (event.key == 'ArrowUp') {
+        moveUp();
+    }
+    if (event.key == 'ArrowLeft') {
+        moveLeft();
+    }
+    if (event.key == 'ArrowRight') {
+        moveRight();
+    }
+    if (event.key == 'ArrowDown') {
+        moveDown();
+    }
+}
 
 function moveUp() {
     console.log('Me quiero mover hacia arriba');
