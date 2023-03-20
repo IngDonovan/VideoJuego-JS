@@ -17,10 +17,6 @@ const playerPosition = {
 window.addEventListener('load',setCanvasSize);//apenas cargue el html, para evitar que nos genere problemas a futuro
 window.addEventListener('resize',setCanvasSize);//para tomar el elemento de cambio de pantalla
 
-function fixNumber(n) {
-    return Number(n.toFixed(0));
-}
-
 
 function setCanvasSize() {
 
@@ -30,7 +26,7 @@ function setCanvasSize() {
     else {
         canvasSize = window.innerHeight * 0.7;
     }
-    canvasSize = fixNumber(canvasSize);
+    canvasSize = Math.floor(canvasSize);
     
     canvas.setAttribute('Width', canvasSize);
     canvas.setAttribute('height', canvasSize);
@@ -41,7 +37,7 @@ function setCanvasSize() {
     //no tener en cuenta el conenido del html sino de la ventana
     
     //como calcular el ancho y el alto del elemento apartir de ese ancho y alto de nuestro canvas, si tenemos 100px respect necesitamos cada medida de 10px
-    elementsSize = fixNumber(canvasSize / 10);
+    elementsSize = (canvasSize / 10);
 
     startGame();//para que no se borre cada vez que se cambie de pantalla
 }
@@ -97,15 +93,15 @@ function startGame() {
             const emoji = emojis[col];
             //console.log(emojis[col]);//esta variable col ya es la letra
             //console.log({row, col});
-            const posX = fixNumber(elementsSize * (colI + 1));//para que no se nos salga del canvas
-            const posY = fixNumber(elementsSize * (rowI + 1));
+            const posX = (elementsSize * (colI + 1.2));//para que no se nos salga del canvas
+            const posY = (elementsSize * (rowI + 0.8));
             
             if (col == 'O') {
                 //console.log('Aqui debe ir el jugador');
                 //console.log({posX, posY});
                 if (!playerPosition.x && !playerPosition.y) {
-                    playerPosition.x = fixNumber(posX);
-                    playerPosition.y = fixNumber(posY);
+                    playerPosition.x = (posX);
+                    playerPosition.y = (posY);
                     console.log({playerPosition});
                 }//para que no repita la posicion inicial
             }
