@@ -13,6 +13,11 @@ const playerPosition = {
     x:undefined,
     y:undefined, 
 };
+//la respuyesta a que no nos sale error por borrar una constantes es porque estamos trabajando con objetos, Se cambian las propiedades de un objeto
+const giftPosition = {
+    x:undefined,
+    y:undefined,
+};
 
 window.addEventListener('load',setCanvasSize);//apenas cargue el html, para evitar que nos genere problemas a futuro
 window.addEventListener('resize',setCanvasSize);//para tomar el elemento de cambio de pantalla
@@ -21,12 +26,12 @@ window.addEventListener('resize',setCanvasSize);//para tomar el elemento de camb
 function setCanvasSize() {
 
     if (window.innerHeight > window.innerWidth) {
-        canvasSize = window.innerWidth * 0.7;
+        canvasSize = window.innerWidth * 0.8;
     }
     else {
-        canvasSize = window.innerHeight * 0.7;
+        canvasSize = window.innerHeight * 0.8;
     }
-    canvasSize = Math.floor(canvasSize);
+    canvasSize = (canvasSize);
     
     canvas.setAttribute('Width', canvasSize);
     canvas.setAttribute('height', canvasSize);
@@ -94,7 +99,7 @@ function startGame() {
             //console.log(emojis[col]);//esta variable col ya es la letra
             //console.log({row, col});
             const posX = (elementsSize * (colI + 1.2));//para que no se nos salga del canvas
-            const posY = (elementsSize * (rowI + 0.8));
+            const posY = (elementsSize * (rowI + 0.9));
             
             if (col == 'O') {
                 //console.log('Aqui debe ir el jugador');
@@ -104,6 +109,9 @@ function startGame() {
                     playerPosition.y = (posY);
                     console.log({playerPosition});
                 }//para que no repita la posicion inicial
+            } else if (col == 'I'){
+                    giftPosition.x = (posX);
+                    giftPosition.y = (posY);
             }
             
             game.fillText(emoji, posX, posY);
@@ -122,6 +130,14 @@ function startGame() {
 }
 
 function movePlayer() {
+    const giftCollisionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
+    const giftCollisionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
+    const giftCollision = giftCollisionX && giftCollisionY;
+
+    if (giftCollision){
+        console.log('Subiste de nivel!!!');
+    }
+
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 }
 
@@ -160,12 +176,12 @@ function moveUp() {
     //la cambiamos por
     //movePlayer();
     //startGame();
-    if ((playerPosition.y - elementsSize) < elementsSize) {
+    if (playerPosition.y < elementsSize) {
         console.log('Out');
     }else {//por si se sale del mapa
-        playerPosition.y -= elementsSize;
-        startGame();
-    }
+         playerPosition.y -= elementsSize;
+         startGame();
+     }
 
 }
 function moveLeft() {
@@ -184,7 +200,7 @@ function moveRight() {
     console.log('Me quiero mover hacia la derecha');
     // playerPosition.x += elementsSize;
     // startGame();
-    if ((playerPosition.x + elementsSize) > canvasSize) {
+    if (playerPosition.x > canvasSize) {
         console.log('Out');
     }else {//por si se sale del mapa
         playerPosition.x += elementsSize;
