@@ -57,7 +57,7 @@ function startGame() {
     //game.fillText('Platzi', 25, 25);
 
 
-    console.log ({canvasSize, elementsSize});
+    //console.log ({canvasSize, elementsSize});
     
     //pero para cuadrar la posicion bien porque cambia con las pantallas usamos:
     game.font = elementsSize + 'px Verdana';//no solo usar el font size sino la fuente tambien que vamos a usar
@@ -83,7 +83,7 @@ function startGame() {
     const map = maps[0];
     const mapRows = maps[0].trim().split('\n');
     const mapRowCols = mapRows.map(row => row.trim().split(''));//crea un array apartir de otro array
-    console.log ({map, mapRows, mapRowCols});
+    //console.log ({map, mapRows, mapRowCols});
 
     //para borrar el emoji anterior
     game.clearRect(0,0,canvasSize,canvasSize);
