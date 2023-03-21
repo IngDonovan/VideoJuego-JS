@@ -19,7 +19,7 @@ const giftPosition = {
     y:undefined,
 };
 
-const enemyPositions = [];
+let enemyPositions = [];
 
 window.addEventListener('load',setCanvasSize);//apenas cargue el html, para evitar que nos genere problemas a futuro
 window.addEventListener('resize',setCanvasSize);//para tomar el elemento de cambio de pantalla
@@ -92,8 +92,10 @@ function startGame() {
     const mapRowCols = mapRows.map(row => row.trim().split(''));//crea un array apartir de otro array
     //console.log ({map, mapRows, mapRowCols});
 
+    enemyPositions =[];//limpiar el arreglo y que no lo acumule, se cambia la variable no a const sino a let
     //para borrar el emoji anterior
     game.clearRect(0,0,canvasSize,canvasSize);
+
     //crear un ciclo for con los metodos de los arrays
     mapRowCols.forEach((row, rowI) => {//row es un array y col es un caracter
         row.forEach((col, colI) => {
@@ -107,13 +109,18 @@ function startGame() {
                 //console.log('Aqui debe ir el jugador');
                 //console.log({posX, posY});
                 if (!playerPosition.x && !playerPosition.y) {
-                    playerPosition.x = (posX);
-                    playerPosition.y = (posY);
+                    playerPosition.x = posX;
+                    playerPosition.y = posY;
                     console.log({playerPosition});
                 }//para que no repita la posicion inicial
             } else if (col == 'I'){
-                    giftPosition.x = (posX);
-                    giftPosition.y = (posY);
+                    giftPosition.x = posX;
+                    giftPosition.y = posY;
+            } else if (col == 'X') {
+                enemyPositions.push({
+                    x: posX.toFixed(3),
+                    y: posY.toFixed(3),
+                });                        
             }
             
             game.fillText(emoji, posX, posY);
@@ -138,6 +145,18 @@ function movePlayer() {
 
     if (giftCollision){
         console.log('Subiste de nivel!!!');
+    }
+
+    
+    const enemyCollision = enemyPositions.find(enemy => {
+        const enemyCollisionX = enemy.x == playerPosition.x.toFixed(3);
+        const enemyCollisionY = enemy.y == playerPosition.y.toFixed(3);
+        //console.log({enemyCollisionX, enemyCollisionY});
+        return enemyCollisionX && enemyCollisionY;
+    });
+
+    if (enemyCollision) {
+        console.log('Te quemaste!');
     }
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
