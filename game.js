@@ -9,6 +9,7 @@ const btnDown = document.querySelector('#down');
 let canvasSize;
 let elementsSize;
 let level = 0;
+let lives = 4;
 
 const playerPosition = {
     x:undefined,
@@ -154,6 +155,7 @@ function movePlayer() {
         levelWin();
     }
 
+
     
     const enemyCollision = enemyPositions.find(enemy => {
         const enemyCollisionX = enemy.x == playerPosition.x.toFixed(3);
@@ -163,7 +165,7 @@ function movePlayer() {
     });
 
     if (enemyCollision) {
-        console.log('Te quemaste!');
+        levelFail();
     }
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
@@ -172,6 +174,19 @@ function movePlayer() {
 function levelWin(){
     console.log('Subiste de nivel!!!');
     level++;
+    startGame();
+}
+
+function levelFail() {
+    console.log('Te quemaste!'); 
+    lives--;
+    console.log(lives);
+    if (lives <= 0) {
+        level = 0;
+        lives = 4;
+    }
+    playerPosition.x = undefined;
+    playerPosition.y = undefined;
     startGame();
 }
 
