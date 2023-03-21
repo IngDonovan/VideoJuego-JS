@@ -8,6 +8,7 @@ const btnDown = document.querySelector('#down');
 
 let canvasSize;
 let elementsSize;
+let level = 0;
 
 const playerPosition = {
     x:undefined,
@@ -87,8 +88,14 @@ function startGame() {
     //usamos el split para volverlo todo en arreglos del salto de linea \n
     //la funcion trim nos ayuda a quitar lo espacios en blanco que tenemos en el arreglo
     //para quitarle los demas espacios de las otras filas usamos la funcion trim anidada en la funcion map
-    const map = maps[0];
-    const mapRows = maps[0].trim().split('\n');
+    const map = maps[level];
+
+    if (!map) {
+        gameWin();
+        return;
+    }
+
+    const mapRows = map.trim().split('\n');
     const mapRowCols = mapRows.map(row => row.trim().split(''));//crea un array apartir de otro array
     //console.log ({map, mapRows, mapRowCols});
 
@@ -144,7 +151,7 @@ function movePlayer() {
     const giftCollision = giftCollisionX && giftCollisionY;
 
     if (giftCollision){
-        console.log('Subiste de nivel!!!');
+        levelWin();
     }
 
     
@@ -160,6 +167,16 @@ function movePlayer() {
     }
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
+}
+
+function levelWin(){
+    console.log('Subiste de nivel!!!');
+    level++;
+    startGame();
+}
+
+function gameWin() {
+    console.log('Terminaste el Juego');
 }
 
 window.addEventListener('keydown', moveByKeys);//keydown. es cuando presionamos y keyup es cuando levantamos de esa tecla
