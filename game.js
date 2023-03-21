@@ -5,6 +5,7 @@ const btnUp = document.querySelector('#up');
 const btnLeft = document.querySelector('#left');
 const btnRight = document.querySelector('#right');
 const btnDown = document.querySelector('#down');
+const spanLives = document.querySelector('#lives');
 
 let canvasSize;
 let elementsSize;
@@ -100,6 +101,8 @@ function startGame() {
     const mapRowCols = mapRows.map(row => row.trim().split(''));//crea un array apartir de otro array
     //console.log ({map, mapRows, mapRowCols});
 
+    showLives();
+
     enemyPositions =[];//limpiar el arreglo y que no lo acumule, se cambia la variable no a const sino a let
     //para borrar el emoji anterior
     game.clearRect(0,0,canvasSize,canvasSize);
@@ -180,7 +183,7 @@ function levelWin(){
 function levelFail() {
     console.log('Te quemaste!'); 
     lives--;
-    console.log(lives);
+    
     if (lives <= 0) {
         level = 0;
         lives = 4;
@@ -192,6 +195,17 @@ function levelFail() {
 
 function gameWin() {
     console.log('Terminaste el Juego');
+}
+
+function showLives() {
+    //Un objeto que maneja los arrays
+    const heartsArray = Array(lives).fill(emojis['HEART']); //me cree un elemento con la cantidad de elementos que tiene nuestro array [1,2,3]
+    console.log(heartsArray);
+
+    //reiniciamos el array 
+    spanLives.innerHTML = "";
+    heartsArray.forEach(heart => spanLives.append(heart)); //apend para que no me borre lo anterior
+    //spanLives.innerHTML = emojis['HEART'];
 }
 
 window.addEventListener('keydown', moveByKeys);//keydown. es cuando presionamos y keyup es cuando levantamos de esa tecla
