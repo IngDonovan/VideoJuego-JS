@@ -19,6 +19,8 @@ const giftPosition = {
     y:undefined,
 };
 
+const enemyPositions = [];
+
 window.addEventListener('load',setCanvasSize);//apenas cargue el html, para evitar que nos genere problemas a futuro
 window.addEventListener('resize',setCanvasSize);//para tomar el elemento de cambio de pantalla
 
@@ -171,7 +173,7 @@ function moveByKeys(event) {
 }
 
 function moveUp() {
-    console.log('Me quiero mover hacia arriba');
+    //console.log('Me quiero mover hacia arriba');
     //playerPosition.y -= elementsSize;
     //la cambiamos por
     //movePlayer();
@@ -185,7 +187,7 @@ function moveUp() {
 
 }
 function moveLeft() {
-    console.log('Me quiero mover hacia la izquierda');
+    //console.log('Me quiero mover hacia la izquierda');
     // playerPosition.x -= elementsSize;
     // startGame();
     if ((playerPosition.x - elementsSize) < elementsSize) {
@@ -197,7 +199,7 @@ function moveLeft() {
 
 }
 function moveRight() {
-    console.log('Me quiero mover hacia la derecha');
+    //console.log('Me quiero mover hacia la derecha');
     // playerPosition.x += elementsSize;
     // startGame();
     if (playerPosition.x > canvasSize) {
@@ -208,7 +210,7 @@ function moveRight() {
     }
 }
 function moveDown() {
-    console.log('Me quiero mover hacia abajo');
+    //console.log('Me quiero mover hacia abajo');
     // playerPosition.y += elementsSize;
     // startGame();
     if ((playerPosition.y + elementsSize) > canvasSize) {
