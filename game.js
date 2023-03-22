@@ -9,6 +9,8 @@ const spanLives = document.querySelector('#lives');
 const spanTime = document.querySelector('#time');
 const spanRecord = document.querySelector('#record');
 const pResult = document.querySelector('#result');
+const btns = document.querySelector('.btns');
+const reloadGame = document.querySelector('#reload');
 
 let canvasSize;
 let elementsSize;
@@ -226,15 +228,24 @@ function gameWin() {
             localStorage.setItem('record_time', playerTime);
             pResult.innerHTML = 'Superaste el record!!';
         }else {
-            pResult.innerHTML = 'Lo siento, no superaste el record';
-            
+            pResult.innerHTML = 'Lo siento, no superaste el record';  
         }
     }else {
         localStorage.setItem('record_time', playerTime);
     }
     timeStart = undefined;//para detener el marcador
-    console.log({recordTime, playerTime});
+    console.log({recordTime, playerTime});   
+    //window.confirm('Reintentar?');
+    //location.reload(); //para reiniciar
+    btns.classList.toggle('hide');
+    reloadGame.classList.toggle('hide');
+    
 }
+
+// function reload() {
+//     window.alert('Reintentar?');
+//     location.reload();
+// }
 
 function showLives() {
     //Un objeto que maneja los arrays
@@ -263,6 +274,9 @@ btnUp.addEventListener('click',moveUp);
 btnLeft.addEventListener('click',moveLeft);
 btnRight.addEventListener('click',moveRight);
 btnDown.addEventListener('click',moveDown);
+reloadGame.addEventListener('click', ()=> {
+    location.reload()
+})
 
 function moveByKeys(event) {
     //console.log(event);

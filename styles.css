@@ -74,6 +74,12 @@
       margin: 0;
       width: 100%;
     }
+    #reload {
+      width: 50%;
+    }
+    .hide {
+      display: none;
+    }
     
     @media (max-width: 440px) {
       button { margin-top: 5px; }
