@@ -6,11 +6,18 @@ const btnLeft = document.querySelector('#left');
 const btnRight = document.querySelector('#right');
 const btnDown = document.querySelector('#down');
 const spanLives = document.querySelector('#lives');
+const spanTime = document.querySelector('#time');
 
 let canvasSize;
 let elementsSize;
 let level = 0;
 let lives = 4;
+
+let timeStart;
+let timePlayer;
+let timeInterval;
+//setInterval //cada cierto tiempo
+//setTimeout //una sola vez 
 
 const playerPosition = {
     x:undefined,
@@ -95,6 +102,11 @@ function startGame() {
     if (!map) {
         gameWin();
         return;
+    }
+
+    if(!timeStart){
+        timeStart = Date.now();
+        timeInterval = setInterval(showTime, 100);
     }
 
     const mapRows = map.trim().split('\n');
@@ -187,6 +199,7 @@ function levelFail() {
     if (lives <= 0) {
         level = 0;
         lives = 4;
+        timeStart = undefined;
     }
     playerPosition.x = undefined;
     playerPosition.y = undefined;
@@ -195,6 +208,7 @@ function levelFail() {
 
 function gameWin() {
     console.log('Terminaste el Juego');
+    clearInterval(timeInterval);
 }
 
 function showLives() {
@@ -206,6 +220,10 @@ function showLives() {
     spanLives.innerHTML = "";
     heartsArray.forEach(heart => spanLives.append(heart)); //apend para que no me borre lo anterior
     //spanLives.innerHTML = emojis['HEART'];
+}
+
+function showTime() {
+    spanTime.innerHTML = Date.now() - timeStart;
 }
 
 window.addEventListener('keydown', moveByKeys);//keydown. es cuando presionamos y keyup es cuando levantamos de esa tecla
