@@ -36,16 +36,19 @@ let enemyPositions = [];
 window.addEventListener('load',setCanvasSize);//apenas cargue el html, para evitar que nos genere problemas a futuro
 window.addEventListener('resize',setCanvasSize);//para tomar el elemento de cambio de pantalla
 
+function fixNumber(n) {
+    return Number(n.toFixed(3));
+}
 
 function setCanvasSize() {
 
     if (window.innerHeight > window.innerWidth) {
-        canvasSize = window.innerWidth * 0.8;
+        canvasSize = window.innerWidth * 0.7;
     }
     else {
-        canvasSize = window.innerHeight * 0.8;
+        canvasSize = window.innerHeight * 0.7;
     }
-    canvasSize = (canvasSize);
+    canvasSize = fixNumber(canvasSize);//toFixed da un string toca volverlo numero
     
     canvas.setAttribute('Width', canvasSize);
     canvas.setAttribute('height', canvasSize);
@@ -58,6 +61,8 @@ function setCanvasSize() {
     //como calcular el ancho y el alto del elemento apartir de ese ancho y alto de nuestro canvas, si tenemos 100px respect necesitamos cada medida de 10px
     elementsSize = (canvasSize / 10);
 
+    playerPosition.x = undefined;
+    playerPosition.y = undefined;
     startGame();//para que no se borre cada vez que se cambie de pantalla
 }
 
