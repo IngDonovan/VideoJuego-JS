@@ -7,6 +7,8 @@ const btnRight = document.querySelector('#right');
 const btnDown = document.querySelector('#down');
 const spanLives = document.querySelector('#lives');
 const spanTime = document.querySelector('#time');
+const spanRecord = document.querySelector('#record');
+const pResult = document.querySelector('#result');
 
 let canvasSize;
 let elementsSize;
@@ -107,6 +109,7 @@ function startGame() {
     if(!timeStart){
         timeStart = Date.now();
         timeInterval = setInterval(showTime, 100);
+        showRecord();
     }
 
     const mapRows = map.trim().split('\n');
@@ -134,7 +137,7 @@ function startGame() {
                 if (!playerPosition.x && !playerPosition.y) {
                     playerPosition.x = posX;
                     playerPosition.y = posY;
-                    console.log({playerPosition});
+                    //console.log({playerPosition});
                 }//para que no repita la posicion inicial
             } else if (col == 'I'){
                     giftPosition.x = posX;
@@ -209,12 +212,27 @@ function levelFail() {
 function gameWin() {
     console.log('Terminaste el Juego');
     clearInterval(timeInterval);
+
+    const recordTime = localStorage.getItem('record_time');
+    const playerTime = Date.now() - timeStart;
+    
+    if(recordTime){
+        if(recordTime >= playerTime){
+            localStorage.setItem('record_time', playerTime);
+            pResult.innerHTML = 'Superaste el record!!';
+        }else {
+            pResult.innerHTML = 'Lo siento, no superaste el record';
+        }
+    }else {
+        localStorage.setItem('record_time', playerTime);
+    }
+    console.log({recordTime, playerTime});
 }
 
 function showLives() {
     //Un objeto que maneja los arrays
     const heartsArray = Array(lives).fill(emojis['HEART']); //me cree un elemento con la cantidad de elementos que tiene nuestro array [1,2,3]
-    console.log(heartsArray);
+    //console.log(heartsArray);
 
     //reiniciamos el array 
     spanLives.innerHTML = "";
@@ -225,6 +243,12 @@ function showLives() {
 function showTime() {
     spanTime.innerHTML = Date.now() - timeStart;
 }
+
+function showRecord() {
+    spanRecord.innerHTML = localStorage.getItem('record_time');
+}
+
+
 
 window.addEventListener('keydown', moveByKeys);//keydown. es cuando presionamos y keyup es cuando levantamos de esa tecla
 //creamos para leer el click de los controles
