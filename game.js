@@ -227,10 +227,12 @@ function gameWin() {
             pResult.innerHTML = 'Superaste el record!!';
         }else {
             pResult.innerHTML = 'Lo siento, no superaste el record';
+            
         }
     }else {
         localStorage.setItem('record_time', playerTime);
     }
+    timeStart = undefined;//para detener el marcador
     console.log({recordTime, playerTime});
 }
 
