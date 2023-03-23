@@ -9,7 +9,7 @@ const emojis = {
     'X': '🔥',
     'I': '🥇',
     'PLAYER': '🏃🏻',
-    'BOMB_COLLISION': '🔥',
+    'BOMB_COLLISION': '👻',
     'GAME_OVER': '👎',
     'WIN': '🏆',
     'HEART': '❤️',

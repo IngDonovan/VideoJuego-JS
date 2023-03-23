@@ -45,10 +45,10 @@ function fixNumber(n) {
 function setCanvasSize() {
 
     if (window.innerHeight > window.innerWidth) {
-        canvasSize = window.innerWidth * 0.7;
+        canvasSize = window.innerWidth * 0.8;
     }
     else {
-        canvasSize = window.innerHeight * 0.7;
+        canvasSize = window.innerHeight * 0.8;
     }
     canvasSize = fixNumber(canvasSize);//toFixed da un string toca volverlo numero
     
@@ -179,9 +179,7 @@ function movePlayer() {
     if (giftCollision){
         levelWin();
     }
-
-
-    
+   
     const enemyCollision = enemyPositions.find(enemy => {
         const enemyCollisionX = enemy.x == playerPosition.x.toFixed(3);
         const enemyCollisionY = enemy.y == playerPosition.y.toFixed(3);
@@ -190,7 +188,13 @@ function movePlayer() {
     });
 
     if (enemyCollision) {
-        levelFail();
+        //levelFail();
+        // showCollision();
+        // setTimeout(levelFail, 2000);
+        game.clearRect(0, 0, canvasSize, canvasSize);
+        game.fillText(emojis['BOMB_COLLISION'], playerPosition.x, playerPosition.y);
+        game.fillText('☠', playerPosition.x + 2, playerPosition.y - elementsSize);
+        setTimeout( () => levelFail(), 800);
     }
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
@@ -204,17 +208,48 @@ function levelWin(){
 
 function levelFail() {
     console.log('Te quemaste!'); 
+    //canvasMsg('Te quemaste!');
     lives--;
     
     if (lives <= 0) {
         level = 0;
         lives = 4;
         timeStart = undefined;
+        clearInterval(timeInterval);
+        game.clearRect(0, 0, canvasSize, canvasSize);
+        game.textAlign = 'center';
+        game.fillText('Game Over', canvasSize / 2, canvasSize / 2);
+        return;
     }
     playerPosition.x = undefined;
     playerPosition.y = undefined;
     startGame();
+    // setTimeout(()=>{
+    //     setCanvasSize()
+    // },1000);
 }
+
+// function showCollision() {
+//     game.clearRect(0, 0, canvasSize, canvasSize);
+//     game.font = '10px Verdana';
+//     game.textAlign = 'center';
+//     if(lives > 1) {
+//         console.log('Perdiste una vida');
+//         game.fillText('PERDISTE UNA VIDA, VUELVE A INTENTARLO', canvasSize/2, canvasSize/2);
+//     }
+//     else {
+//         console.log('Perdiste todo');
+//         game.fillText('PERDISTE TODAS LAS VIDAS, VUELVE AL INICIO', canvasSize/2, canvasSize/2);
+//     } 
+// }
+
+// function canvasMsg(msj) {
+//     game.fillStyle = 'purple';
+//     game.fillRect(0, (canvasSize/2.5), canvasSize, 100);
+//     game.fillStyle = 'yellow';
+//     game.textAlign = 'center';
+//     game.fillText(msj,(canvasSize/2),(canvasSize/2));
+// }
 
 function gameWin() {
     console.log('Terminaste el Juego');
